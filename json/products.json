@@ -1,0 +1,164 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Smart Light Bulb",
+            "category": "Lighting",
+            "image": "https://cdn.thewirecutter.com/wp-content/media/2024/02/smartledlightbulbs-2048px-07793.jpg?auto=webp&quality=75&width=1024",
+            "img-url": "https://via.placeholder.com/400x300?text=Smart+Bulb",
+            "description": "Dimmable LED smart bulb with color and scheduling.",
+            "detailed_description": "A multi-color, energy-efficient LED bulb that connects to your Wi-Fi and smart home hub. Set schedules, scenes, and automate lighting based on presence or time of day. Compatible with voice assistants and supports custom color temperatures for ambiance and better sleep cycles.",
+            "price": 19.99
+        },
+        {
+            "id": 2,
+            "name": "Smart Thermostat",
+            "category": "Climate",
+            "image": "https://via.placeholder.com/400x300?text=Thermostat",
+            "img-url": "https://via.placeholder.com/400x300?text=Thermostat",
+            "description": "Learning thermostat with remote control and energy reports.",
+            "detailed_description": "Learns your household schedule and temperature preferences to automatically create efficient heating and cooling schedules. Provides energy usage reports, remote control via mobile app, and works with most HVAC systems. Includes geofencing and smart home integrations for optimized comfort and savings.",
+            "price": 129.99
+        },
+        {
+            "id": 3,
+            "name": "Smart Plug",
+            "category": "Power",
+            "image": "https://via.placeholder.com/400x300?text=Smart+Plug",
+            "img-url": "https://via.placeholder.com/400x300?text=Smart+Plug",
+            "description": "Wi‑Fi enabled smart plug to schedule and monitor devices.",
+            "detailed_description": "Compact smart plug that lets you remotely turn appliances on/off, set schedules, and monitor energy consumption. Works with voice assistants and supports automation rules. Ideal for lamps, coffee makers, and holiday lights — no hub required.",
+            "price": 24.99
+        },
+        {
+            "id": 4,
+            "name": "Security Camera",
+            "category": "Security",
+            "image": "https://via.placeholder.com/400x300?text=Camera",
+            "img-url": "https://via.placeholder.com/400x300?text=Camera",
+            "description": "1080p indoor security camera with motion detection and night vision.",
+            "detailed_description": "High-definition indoor camera with 1080p video, night vision, two-way audio, and intelligent motion detection that reduces false alerts. Store clips locally or in the cloud; receive push notifications and view live stream from the app. Easy mounting and privacy shutter included.",
+            "price": 99.99
+        },
+        {
+            "id": 5,
+            "name": "Smart Door Lock",
+            "category": "Security",
+            "image": "https://via.placeholder.com/400x300?text=Door+Lock",
+            "img-url": "https://via.placeholder.com/400x300?text=Door+Lock",
+            "description": "Keyless door lock with remote access and access logs.",
+            "detailed_description": "Keyless entry with PIN codes, temporary guest access, and detailed access logs. Connects to your smart home system for remote locking/unlocking, automations, and alerts. Built with tamper-resistant materials and easy installation on most standard doors.",
+            "price": 149.99
+        },
+        {
+            "id": 6,
+            "name": "Smart Smoke & CO Alarm",
+            "category": "Safety",
+            "image": "https://via.placeholder.com/400x300?text=Smoke+Alarm",
+            "img-url": "https://via.placeholder.com/400x300?text=Smoke+Alarm",
+            "description": "Combined smoke and CO detector with mobile alerts.",
+            "detailed_description": "A combined smoke and carbon monoxide alarm that sends real-time mobile alerts and self-tests regularly. Integrates with other smart devices to turn on lights during an alarm and shows exact alarm location when used in multiple rooms.",
+            "price": 79.99
+        },
+        {
+            "id": 7,
+            "name": "Smart Vacuum Robot",
+            "category": "Appliances",
+            "image": "https://via.placeholder.com/400x300?text=Robot+Vacuum",
+            "img-url": "https://via.placeholder.com/400x300?text=Robot+Vacuum",
+            "description": "Autonomous vacuum with scheduling and multi‑room mapping.",
+            "detailed_description": "Robotic vacuum with intelligent mapping, zone cleaning, and scheduled cleanups. Supports no-go lines, multi-floor maps, and automatic return-to-dock charging. Works with voice assistants for hands-free control and can be paired with mopping accessories.",
+            "price": 249.99
+        },
+        {
+            "id": 8,
+            "name": "Smart Speaker",
+            "category": "Entertainment",
+            "image": "https://via.placeholder.com/400x300?text=Smart+Speaker",
+            "img-url": "https://via.placeholder.com/400x300?text=Smart+Speaker",
+            "description": "Voice assistant speaker with multiroom audio support.",
+            "detailed_description": "High-quality smart speaker with built-in voice assistant, multiroom playback, and smart home control. Use voice commands to play music, set reminders, control lights, and more. Features rich sound and privacy controls such as a mic mute switch.",
+            "price": 89.99
+        },
+        {
+            "id": 9,
+            "name": "Water Leak Sensor",
+            "category": "Sensors",
+            "image": "https://via.placeholder.com/400x300?text=Leak+Sensor",
+            "img-url": "https://via.placeholder.com/400x300?text=Leak+Sensor",
+            "description": "Compact leak sensor with instant alerts to your phone.",
+            "detailed_description": "Small, battery-powered leak sensor that detects water and alerts you instantly via app notifications. Place under sinks, near water heaters, or behind appliances to prevent costly water damage. Some models include temperature sensing and tamper alerts.",
+            "price": 29.99
+        },
+        {
+            "id": 10,
+            "name": "Mesh Wi‑Fi System",
+            "category": "Network",
+            "image": "https://via.placeholder.com/400x300?text=Mesh+WiFi",
+            "img-url": "https://via.placeholder.com/400x300?text=Mesh+WiFi",
+            "description": "Whole‑home mesh Wi‑Fi kit for fast, reliable coverage.",
+            "detailed_description": "A mesh Wi‑Fi kit with multiple nodes to eliminate dead zones and provide consistent, high-speed coverage across large homes. Easy setup, parental controls, guest networks, and device prioritization features make it ideal for connected homes.",
+            "price": 199.99
+        },
+        {
+            "id": 11,
+            "name": "Smart LED Strip",
+            "category": "Lighting",
+            "image": "https://via.placeholder.com/400x300?text=LED+Strip",
+            "img-url": "https://via.placeholder.com/400x300?text=LED+Strip",
+            "description": "Addressable RGB LED strip with app control and music sync.",
+            "detailed_description": "Flexible, addressable RGB LED strip that can be cut to length and controlled via app for color, brightness, and effects. Syncs with music for immersive lighting and supports scenes and automation. Great for accent lighting behind TVs or under cabinets.",
+            "price": 39.99
+        },
+        {
+            "id": 12,
+            "name": "Smart Garage Door Opener",
+            "category": "Security",
+            "image": "https://via.placeholder.com/400x300?text=Garage+Opener",
+            "img-url": "https://via.placeholder.com/400x300?text=Garage+Opener",
+            "description": "Monitor and control your garage door remotely with alerts.",
+            "detailed_description": "Device that connects to your existing garage door opener to provide remote open/close, activity logs, and door state alerts. Geofencing can automatically close the door when you leave, and guest access can be granted temporarily.",
+            "price": 129.99
+        },
+        {
+            "id": 13,
+            "name": "Smart Induction Cooktop",
+            "category": "Appliances",
+            "image": "https://via.placeholder.com/400x300?text=Induction+Cooktop",
+            "img-url": "https://via.placeholder.com/400x300?text=Induction+Cooktop",
+            "description": "Portable induction cooktop with precise temperature control.",
+            "detailed_description": "Portable induction cooktop providing rapid heating and precise temperature control with safety features like auto shut-off and pan detection. Ideal for small kitchens, entertaining, or as an extra cooking zone.",
+            "price": 119.99
+        },
+        {
+            "id": 14,
+            "name": "Smart Air Purifier",
+            "category": "Climate",
+            "image": "https://via.placeholder.com/400x300?text=Air+Purifier",
+            "img-url": "https://via.placeholder.com/400x300?text=Air+Purifier",
+            "description": "HEPA air purifier with app control and air quality sensing.",
+            "detailed_description": "High-efficiency HEPA air purifier that monitors air quality in real time and adjusts fan speed accordingly. Controlled via app or voice and includes filters for particles, pollen, and odors for healthier indoor air.",
+            "price": 199.99
+        },
+        {
+            "id": 15,
+            "name": "Outdoor Smart Floodlight",
+            "category": "Security",
+            "image": "https://via.placeholder.com/400x300?text=Floodlight",
+            "img-url": "https://via.placeholder.com/400x300?text=Floodlight",
+            "description": "Weatherproof motion-activated floodlight with camera option.",
+            "detailed_description": "Durable outdoor floodlight with integrated motion detection and optional camera for monitoring driveways and yards. Configurable sensitivity, schedule, and alerts; works with other security devices for coordinated responses.",
+            "price": 139.99
+        },
+        {
+            "id": 16,
+            "name": "Smart Window Blinds",
+            "category": "Lighting",
+            "image": "https://via.placeholder.com/400x300?text=Window+Blinds",
+            "img-url": "https://via.placeholder.com/400x300?text=Window+Blinds",
+            "description": "Motorized blinds that open/close on schedule or with voice commands.",
+            "detailed_description": "Motorized window blinds that can be scheduled or controlled via app and voice assistants. Supports scenes like 'morning' or 'movie' and can be integrated with sunlight sensors to automatically adjust for energy savings and privacy.",
+            "price": 249.99
+        }
+    ]
+}

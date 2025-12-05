@@ -28,85 +28,86 @@
       <a href="#">تسجيل الدخول</a>
     </div>
   </header>
-  <!-- Carousel markup: uses styles in static/Style.css -->
-  <div class="carousel">
-    <button class="carousel-button prev" aria-label="السابق">‹</button>
-    <div class="carousel-viewport">
-      <ul class="carousel-track">
-        {% for product in products %}
-        <li class="carousel-item" data-name="{{ product.name }}" data-desc="{{ product.description }}" data-price="{{ product.price }}" data-img="{{ product.get('img-url','') }}">
-          <div class="product-card" role="button" tabindex="0">
-            <img src="{{product['img-url']}}" alt="{{ product.name }}" class="dummie-img">
-            <h2>{{ product.name }}</h2>
-            <p class="product-description">{{ product.description }}</p>
-            <p>السعر: {{ product.price }} دولار</p>
-          </div>
-        </li>
-        {% endfor %}
-      </ul>
+  <!-- Render one carousel per category -->
+  {% for cat in categories %}
+    <h3 class="category-title">{{ cat }}</h3>
+    <div class="carousel" data-category="{{ cat }}">
+      <button class="carousel-button prev" aria-label="السابق">‹</button>
+      <div class="carousel-viewport">
+        <ul class="carousel-track">
+          {% for product in products %}
+            {% if product.get('category','Uncategorized') == cat %}
+            <li class="carousel-item" data-category="{{ cat }}" data-name="{{ product['name'] }}" data-desc="{{ product.get('detailed_description', product.get('description','')) }}" data-price="{{ product['price'] }}" data-img="{{ product.get('image','') }}">
+              <div class="product-card" role="button" tabindex="0">
+                <h2>{{ product['name'] }}</h2>
+                <img src="{{ product['image'] }}" alt="{{ product['name'] }} image" class="dummie-img">
+                
+                <p class="product-description">{{ product['description'] }}</p>
+                <p>السعر: {{ product['price'] }} دولار</p>
+              </div>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <button class="carousel-button next" aria-label="التالي">›</button>
     </div>
-    <button class="carousel-button next" aria-label="التالي">›</button>
-  </div>
+  {% endfor %}
 
   <script>
-  // Simple responsive carousel controller
+  // Initialize each carousel separately
   document.addEventListener('DOMContentLoaded', function(){
-    const track = document.querySelector('.carousel-track');
-    const items = Array.from(document.querySelectorAll('.carousel-item'));
-    const prev = document.querySelector('.carousel-button.prev');
-    const next = document.querySelector('.carousel-button.next');
-    const viewport = document.querySelector('.carousel-viewport');
-    if(!track || items.length === 0) return;
-
-    let index = 0;
-    const perView = () => (window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3);
-
-    function setSizes(){
-      const n = perView();
-      const width = Math.floor(viewport.clientWidth / n);
-      items.forEach(item => item.style.minWidth = width + 'px');
-      console.log('carousel setSizes', {items: items.length, perView: n, itemWidth: width});
-      moveTo(index);
-    }
-
+    const carousels = Array.from(document.querySelectorAll('.carousel'));
     const isRTL = document.documentElement && document.documentElement.dir === 'rtl';
-    console.log('carousel init', {isRTL, productsCount: items.length});
 
-    function moveTo(i){
-      const maxIndex = Math.max(0, items.length - perView());
-      // wrap around when exceeding bounds so all items remain reachable
-      if(i > maxIndex) i = 0;
-      if(i < 0) i = maxIndex;
-      index = i;
-      // fallback width if layout not ready
-      const itemWidth = (items[0].getBoundingClientRect().width || Math.floor(viewport.clientWidth / perView()));
-      const offset = itemWidth * index;
-      // In RTL pages translate direction needs to be flipped
-      const translateX = isRTL ? offset : -offset;
-      track.style.transform = 'translateX(' + (translateX) + 'px)';
-      console.log('moveTo', {index, perView: perView(), itemWidth, offset, translateX});
+    function initCarousel(root){
+      const track = root.querySelector('.carousel-track');
+      let items = Array.from(root.querySelectorAll('.carousel-item'));
+      const prev = root.querySelector('.carousel-button.prev');
+      const next = root.querySelector('.carousel-button.next');
+      const viewport = root.querySelector('.carousel-viewport');
+      if(!track || items.length === 0) return;
+
+      let index = 0;
+      const perView = () => (window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3);
+
+      function setSizes(){
+        const n = perView();
+        const width = Math.floor(viewport.clientWidth / n);
+        items.forEach(item => item.style.minWidth = width + 'px');
+        if(items.length === 0){ track.style.transform = 'none'; return; }
+        moveTo(index);
+      }
+
+      function moveTo(i){
+        const maxIndex = Math.max(0, items.length - perView());
+        if(i > maxIndex) i = 0;
+        if(i < 0) i = maxIndex;
+        index = i;
+        const itemWidth = (items[0].getBoundingClientRect().width || Math.floor(viewport.clientWidth / perView()));
+        const offset = itemWidth * index;
+        const translateX = isRTL ? offset : -offset;
+        track.style.transform = 'translateX(' + (translateX) + 'px)';
+      }
+
+      prev.addEventListener('click', ()=> moveTo(index - 1));
+      next.addEventListener('click', ()=> moveTo(index + 1));
+
+      window.addEventListener('resize', setSizes);
+      setSizes();
+
+      let autoplay = setInterval(()=> moveTo(index + 1), 3000);
+      root.addEventListener('mouseenter', ()=> clearInterval(autoplay));
+      root.addEventListener('mouseleave', ()=> { autoplay = setInterval(()=> moveTo(index + 1), 3000); });
     }
 
-    prev.addEventListener('click', ()=> moveTo(index - 1));
-    next.addEventListener('click', ()=> moveTo(index + 1));
-
-    window.addEventListener('resize', setSizes);
-    setSizes();
-
-    // autoplay
-    let autoplay = setInterval(()=> moveTo(index + 1), 3000);
-    const carousel = document.querySelector('.carousel');
-    carousel.addEventListener('mouseenter', ()=> clearInterval(autoplay));
-    carousel.addEventListener('mouseleave', ()=> { autoplay = setInterval(()=> moveTo(index + 1), 3000); });
+    carousels.forEach(initCarousel);
   });
   </script>
-  
-  <!-- Modal script: opens a product detail modal and blurs the background -->
+
+  <!-- Modal script: opens a product detail modal and blurs the background (delegated) -->
   <script>
   document.addEventListener('DOMContentLoaded', function(){
-    const items = Array.from(document.querySelectorAll('.carousel-item'));
-    if(items.length === 0) return;
-
     // create modal DOM
     const modal = document.createElement('div');
     modal.className = 'modal';
@@ -144,12 +145,23 @@
       modalEl.setAttribute('aria-hidden', 'true');
     }
 
-    items.forEach(item => {
-      const card = item.querySelector('.product-card');
+    // delegated click handler for product-card across all carousels
+    document.addEventListener('click', (e)=>{
+      const card = e.target.closest('.product-card');
       if(!card) return;
-      const handler = () => openModal({name: item.dataset.name, desc: item.dataset.desc, price: item.dataset.price, img: item.dataset.img});
-      card.addEventListener('click', handler);
-      card.addEventListener('keydown', (e)=> { if(e.key === 'Enter' || e.key === ' ') handler(); });
+      const li = card.closest('.carousel-item');
+      if(!li) return;
+      openModal({name: li.dataset.name, desc: li.dataset.desc, price: li.dataset.price, img: li.dataset.img});
+    });
+
+    // keyboard support: open modal when focused product-card receives Enter or Space
+    document.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      const active = document.activeElement;
+      if(active && active.classList && active.classList.contains('product-card')){
+        const li = active.closest('.carousel-item');
+        if(li) openModal({name: li.dataset.name, desc: li.dataset.desc, price: li.dataset.price, img: li.dataset.img});
+      }
     });
 
     document.body.addEventListener('click', (e)=> { if(e.target.matches('[data-close]') || e.target.classList.contains('modal-close')) closeModal(); });

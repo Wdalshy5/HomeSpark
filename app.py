@@ -2,20 +2,25 @@
 this is the flask app playground to
 """
 from flask import Flask, jsonify,render_template
+import json
 
+products = []
+json_file_path = 'json/products.json'
+opened_file = open(json_file_path, 'r')
+products = json.load(opened_file)
+products_cata=[]
+for product in products['products']:
+    category = product.get('category', 'Uncategorized')
+    if category not in products_cata:
+        products_cata.append(category)
 
 app = Flask(__name__)
 no_img_url="data:image/png;base64,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"
 @app.route('/')
 def home():
-    produdcts = [
-        {'id': 1, 'name': 'Smart Light Bulb',"img-url": "https://cdn.thewirecutter.com/wp-content/media/2024/02/smartledlightbulbs-2048px-07781-3x2-1.jpg?auto=webp&quality=75&crop=1.91:1&width=1200", "description": "A smart light bulb that can be controlled via your smartphone.", 'price': 19.99},
-        {'id': 2, 'name': 'Smart Thermostat', "img-url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR8pLdmNrZfrcB20q2e44uQp_7Cor6B-dcgQ&s", "description": "A smart thermostat that learns your schedule and saves energy.", 'price': 129.99},
-        {'id': 3, 'name': 'Smart Plug', "img-url": "https://www.lightinglegends.com/cdn/shop/files/5.jpg?v=1706702441", "description": "A smart plug to control your devices remotely.", 'price': 24.99},
-        {'id': 4, 'name': 'Smart Security Camera', "img-url": no_img_url, "description": "A smart security camera with motion detection.", 'price': 99.99},
-        {'id': 5, 'name': 'Smart Door Lock', "img-url": no_img_url, "description": "A smart door lock with keyless entry.", 'price': 149.99}
-    ]
-    return render_template('index.html', products=produdcts)
+    produdcts = products["products"]
+    print(type(produdcts))
+    return render_template('index.html', products=produdcts, categories=products_cata)
 
 if __name__ == '__main__':
     app.run(debug=True)
